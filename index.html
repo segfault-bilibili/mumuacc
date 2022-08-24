@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head><meta charset="utf-8"/></head>
+<html>
+    <h1>蓝MuMu外服加速</h1>
+    <button onclick="retry()" id="retrybtn">重试</button>
+    <h3>如果未列出游戏，可尝试在【设置】-【应用】的右上角菜单中【显示系统进程】，<br>
+    然后把【MuMu加速服务】的数据清除。</h3>
+    <script>
+        async function retry() {
+            return await fetch(new Request("http://127.0.0.1:17002/tools/vbtnbar", {
+                method: "POST",
+                headers: new Headers().append("Content-Type", "application/json"),
+                body: "{\"action\":\"showAccPanel\"}",
+                mode: "no-cors"}));
+        }
+        retry();
+    </script>
+</html>
