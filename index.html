@@ -17,11 +17,15 @@
     然后把【MuMu加速服务】的数据清除。</h3>
     <script>
         async function retry() {
-            return await fetch(new Request("http://127.0.0.1:17002/tools/vbtnbar", {
+            let promises = [];
+            for (let port = 17002; port <= 17064; port++) promises.push(fetch(new Request(`http://127.0.0.1:${port}/tools/vbtnbar`, {
                 method: "POST",
                 headers: new Headers().append("Content-Type", "application/json"),
                 body: "{\"action\":\"showAccPanel\"}",
-                mode: "no-cors"}));
+                mode: "no-cors"})));
+            let result = await Promise.allSettled(promises);
+            console.log(result);
+            return result;
         }
         retry();
     </script>
